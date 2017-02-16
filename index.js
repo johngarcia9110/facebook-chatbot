@@ -108,7 +108,7 @@ function sendRequest(sender, messageData){
     if (error){
       console.log('Sending Error');
     }else if (response.body.error){
-      console.log('Response Body Error')
+      console.log('Response Body Error:' + response.body.error);
     }
   });
 };
