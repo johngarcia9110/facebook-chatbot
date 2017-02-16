@@ -84,7 +84,7 @@ function sendGeneric(sender){
              },{
                "type":"postback",
                "title":"generic message",
-               "payload":"DEVELOPER_DEFINED_PAYLOAD"
+               "payload":"leave"
               }              
             ]      
           }
