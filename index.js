@@ -1,5 +1,7 @@
 'use strict'
 
+// TODO: Remove temp notes at bottom of document before live roll out.
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
@@ -47,7 +49,7 @@ function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
-    //sendGenericMessage(sender);
+    //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
@@ -83,7 +85,7 @@ function sendButtonMessage(sender, text){
       }
   }
   sendRequest(sender, messageData);
-}
+};
 
 function sendGenericMessage(sender){
   let messageData = {
@@ -141,3 +143,14 @@ function sendRequest(sender, messageData){
 app.listen(app.get('port'), function(){
   console.log('Running on: port.');
 });
+
+
+
+//Temp notes:
+// Update greeeting use the below command in terminal:
+// curl -X POST -H "Content-Type: application/json" -d '{
+//   "setting_type":"greeting",
+//   "greeting":{
+//     "text":"Welcome to the John Garcia chatbot. My first attempt at turning myself into a robot. Also a great app to find out information about me."
+//   }
+// }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAaZBXy1wLDMBAM5uLZA40rnFVburiWhxrncV6Bclv9b1CfZAhrFWcwo7REVMguMhZC2tAWY4eUM2gfenEP0k46DsfImKoGYIS8e4WZBZA34kZCeO3MmuQrn0KRjPsUJGrKf8uYzBZAu04oML7ALlWv5msl6yqiZABmc8sSPrSAZCpZBQZDZD"    
