@@ -47,7 +47,7 @@ function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
     //sendText(sender, 'Hi! I\'m John, nice to meet you!');
-    //sendGeneric(sender);
+    sendGenericMessage(sender);
     sendButtonMessage(sender, 'click me');
   }else{
     sendText(sender, "Text Echo:" + text.substring(0,100));
@@ -84,7 +84,7 @@ function sendButtonMessage(sender, text){
   sendRequest(sender, messageData);
 }
 
-function sendGeneric(sender){
+function sendGenericMessage(sender){
   let messageData = {
     "attachment":{
      "type":"template",
