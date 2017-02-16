@@ -45,7 +45,7 @@ app.post('/webhook/', function(req,res){
 
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
-  if(text = 'hi' || 'hello' || 'hi john'){
+  if(text === 'hi' || 'hello' || 'hi john'){
     sendText(sender, 'Hi, thanks for chatting with me today, here are some of the things I can help you out with:');
   }else{
     sendText(sender, "Text Echo:" + text.substring(0,100));
