@@ -45,8 +45,9 @@ app.post('/webhook/', function(req,res){
 
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
-  if(text === 'hi'){
-    sendText(sender, 'Hi, thanks for chatting with me today, here are some of the things I can help you out with:');
+  if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
+    sendText(sender, 'Hi! I\'m John, nice to meet you!');
+    sendGeneric(sender);
   }else{
     sendText(sender, "Text Echo:" + text.substring(0,100));
   }
@@ -54,6 +55,47 @@ function decideMessage(sender, text1){
 
 function sendText(sender, text){
   let messageData = {text: text};
+  sendRequest(sender, messageData);
+};
+
+function sendGeneric(sender){
+  let messageData = {
+    "attachment":{
+     "type":"template",
+     "payload":{
+       "template_type":"generic",
+       "elements":[
+          {
+           "title":"Here are some things I can help you with:",
+           "image_url":"https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/16722394_395168420840964_639191937633027848_o.jpg?oh=34aeba457c1a5fb0d815a37601ad350a&oe=5931630B",
+           "subtitle":"subtitle",
+           "default_action": {
+             "type": "web_url",
+             "url": "http://johnbgarcia.com",
+             "messenger_extensions": true,
+             "webview_height_ratio": "tall",
+             "fallback_url": "http://johnbgarcia.com"
+           },
+           "buttons":[
+             {
+               "type":"web_url",
+               "url":"http://johnbgarcia.com/images/JohnBGarcia-Resume.pdf",
+               "title":"View My Resume"
+             },{
+               "type":"postback",
+               "title":"generic message",
+               "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]      
+          }
+        ]
+      }
+    }
+  };
+  sendRequest(sender, messageData);
+};
+
+function sendRequest(sender, messageData){
   request({
     url : 'https://graph.facebook.com/v2.6/me/messages',
     qs : {access_token : token},
