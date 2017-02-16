@@ -46,11 +46,12 @@ app.post('/webhook/', function(req,res){
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
-    //sendText(sender, 'Hi! I\'m John, nice to meet you!');
-    sendGenericMessage(sender);
-    sendButtonMessage(sender, 'click me');
+    sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
+    //sendGenericMessage(sender);
+    sendButtonMessage(sender, 'Select One Of The Following Options:');
   }else{
-    sendText(sender, "Text Echo:" + text.substring(0,100));
+    sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
+    sendButtonMessage(sender, 'Select One Of The Following Options:');
   }
 };
 
@@ -65,17 +66,17 @@ function sendButtonMessage(sender, text){
         "type":"template",
         "payload":{
           "template_type":"button",
-          "text":"What do you want to do next?",
+          "text": text,
           "buttons":[
             {
               "type":"web_url",
               "url":"http://johnbgarcia.com",
-              "title": text
+              "title": 'Visit My Portfolio'
             },
             {
-              "type":"postback",
-              "title":"Start Chatting",
-              "payload":"USER_DEFINED_PAYLOAD"
+              "type":"web_url",
+              "url":"http://johnbgarcia.com/images/JohnBGarcia-Resume.pdf",
+              "title":"View My Resume"
             }
           ]
         }
