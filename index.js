@@ -69,7 +69,7 @@ function sendButtonMessage(sender, text){
           "buttons":[
             {
               "type":"web_url",
-              "url":"https://petersapparel.parseapp.com",
+              "url":"http://johnbgarcia.com",
               "title": text
             },
             {
@@ -97,10 +97,7 @@ function sendGenericMessage(sender){
            "subtitle":"subtitletext",
            "default_action": {
              "type": "web_url",
-             "url": "http://johnbgarcia.com",
-             "messenger_extensions": true,
-             "webview_height_ratio": "tall",
-             "fallback_url": "http://johnbgarcia.com"
+             "url": "http://johnbgarcia.com"
            },
            "buttons":[
              {
