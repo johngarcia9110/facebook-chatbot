@@ -61,7 +61,6 @@ function sendText(sender, text){
 
 function sendButtonMessage(sender, text){
   let messageData = {
-      "message":{
       "attachment":{
         "type":"template",
         "payload":{
@@ -81,7 +80,6 @@ function sendButtonMessage(sender, text){
           ]
         }
       }
-    }
   }
   sendRequest(sender, messageData);
 }
