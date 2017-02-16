@@ -47,7 +47,8 @@ function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
     //sendText(sender, 'Hi! I\'m John, nice to meet you!');
-    sendGeneric(sender);
+    //sendGeneric(sender);
+    sendButtonMessage(sender, 'click me');
   }else{
     sendText(sender, "Text Echo:" + text.substring(0,100));
   }
@@ -58,6 +59,33 @@ function sendText(sender, text){
   sendRequest(sender, messageData);
 };
 
+function sendButtonMessage(sender, text){
+  let messageData = {
+      "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"What do you want to do next?",
+          "buttons":[
+            {
+              "type":"web_url",
+              "url":"https://petersapparel.parseapp.com",
+              "title": text
+            },
+            {
+              "type":"postback",
+              "title":"Start Chatting",
+              "payload":"USER_DEFINED_PAYLOAD"
+            }
+          ]
+        }
+      }
+    }
+  }
+  sendRequest(sender, messageData);
+}
+
 function sendGeneric(sender){
   let messageData = {
     "attachment":{
@@ -67,7 +95,7 @@ function sendGeneric(sender){
        "elements":[
           {
            "title":"Here are some things I can help you with:",
-           "image_url":"https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/16722394_395168420840964_639191937633027848_o.jpg?oh=34aeba457c1a5fb0d815a37601ad350a&oe=5931630B",
+           "image_url":"http://johnbgarcia.com/images/portfolio-website.png",
            "subtitle":"subtitletext",
            "default_action": {
              "type": "web_url",
