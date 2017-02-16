@@ -46,7 +46,7 @@ app.post('/webhook/', function(req,res){
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
-    sendText(sender, 'Hi! I\'m John, nice to meet you!');
+    //sendText(sender, 'Hi! I\'m John, nice to meet you!');
     sendGeneric(sender);
   }else{
     sendText(sender, "Text Echo:" + text.substring(0,100));
@@ -68,7 +68,7 @@ function sendGeneric(sender){
           {
            "title":"Here are some things I can help you with:",
            "image_url":"https://scontent-lga3-1.xx.fbcdn.net/v/t31.0-8/16722394_395168420840964_639191937633027848_o.jpg?oh=34aeba457c1a5fb0d815a37601ad350a&oe=5931630B",
-           "subtitle":"subtitle",
+           "subtitle":"subtitletext",
            "default_action": {
              "type": "web_url",
              "url": "http://johnbgarcia.com",
