@@ -40,6 +40,10 @@ app.post('/webhook/', function(req,res){
       decideMessage(sender, text);
       //sendText(sender, "Text Echo:" + text.substring(0,100));
     }
+    if(event.postback){
+      let text = JSON.stringify(event.postback);
+      decideMessage(sender,text);
+    }
   }
   res.sendStatus(200);
 });
@@ -51,6 +55,8 @@ function decideMessage(sender, text1){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
+  }else if(text === 'getstarted'){
+    sendText(sender, "Postback recieved");
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
     sendButtonMessage(sender, 'Select One Of The Following Options:');
@@ -111,8 +117,8 @@ function sendGenericMessage(sender){
                "type":"postback",
                "title":"generic message",
                "payload":"leave"
-              }              
-            ]      
+              }
+            ]
           }
         ]
       }
@@ -149,8 +155,19 @@ app.listen(app.get('port'), function(){
 //Temp notes:
 // Update greeeting use the below command in terminal:
 // curl -X POST -H "Content-Type: application/json" -d '{
-//   "setting_type":"greeting",
-//   "greeting":{
-//     "text":"Welcome to the John Garcia chatbot. My first attempt at turning myself into a robot. Also a great app to find out information about me."
-//   }
+//   "setting_type":"call_to_actions",
+//   "thread_state":"new_thread",
+//   "call_to_actions":[
+//     {
+//       "payload":"getstarted"
+//     }
+//   ]
+// }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAaZBXy1wLDMBAM5uLZA40rnFVburiWhxrncV6Bclv9b1CfZAhrFWcwo7REVMguMhZC2tAWY4eUM2gfenEP0k46DsfImKoGYIS8e4WZBZA34kZCeO3MmuQrn0KRjPsUJGrKf8uYzBZAu04oML7ALlWv5msl6yqiZABmc8sSPrSAZCpZBQZDZD"    
+// 
+// 
+// curl -X POST -H "Content-Type: application/json" -d '{
+//   "recipient":{
+//     "id":"USER_ID"
+//   },
+//   "sender_action":"typing_on"
 // }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAaZBXy1wLDMBAM5uLZA40rnFVburiWhxrncV6Bclv9b1CfZAhrFWcwo7REVMguMhZC2tAWY4eUM2gfenEP0k46DsfImKoGYIS8e4WZBZA34kZCeO3MmuQrn0KRjPsUJGrKf8uYzBZAu04oML7ALlWv5msl6yqiZABmc8sSPrSAZCpZBQZDZD"    
