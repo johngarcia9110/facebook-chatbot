@@ -42,8 +42,6 @@ app.post('/webhook/', function(req,res){
     }
     if(event.postback){
       let text = JSON.stringify(event.postback);
-      console.log(event.postback);
-      console.log(text);
       decideMessage(sender,text);
     }
   }
@@ -57,7 +55,7 @@ function decideMessage(sender, text1){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
-  }else if(text === 'getstarted'){
+  }else if(text['payload'] === 'getstarted'){
     sendText(sender, "Postback recieved");
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
