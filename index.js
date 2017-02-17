@@ -42,6 +42,8 @@ app.post('/webhook/', function(req,res){
     }
     if(event.postback){
       let text = JSON.stringify(event.postback);
+      console.log(event.postback);
+      console.log(text);
       decideMessage(sender,text);
     }
   }
