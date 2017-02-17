@@ -38,11 +38,15 @@ app.post('/webhook/', function(req,res){
     if(event.message && event.message.text){
       let text = event.message.text;
       decideMessage(sender, text);
-      //sendText(sender, "Text Echo:" + text.substring(0,100));
     }
     if(event.postback){
       let text = JSON.stringify(event.postback.payload);
       decideMessage(sender,text);
+    }
+    if(event.quick_reply){
+      console.log(event.quick_reply);
+      let text = JSON.stringify(event.quick_reply.payload);
+      decideMessage(sender, text);
     }
   }
   res.sendStatus(200);
@@ -58,7 +62,13 @@ function decideMessage(sender, text1){
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
   }else if(text1 === '"getstarted"'){
-    sendText(sender, "Postback recieved");
+    quickReplyMessageIntro(sender, 'I can give you a ton of information about John. You can learn about his background, what project he is currently working on and links to his portfolio and resume.');
+  }else if(text1 === '"getBackground"'){
+    sendText(sender, "my background");
+  }else if(text1 === '"getCurrentProject"'){
+    sendText(sender,"current project");
+  }else if(text1 === '"getLinks"'){
+    sendButtonMessage(sender, 'Here are John\'s links:');
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
     sendButtonMessage(sender, 'Select One Of The Following Options:');
@@ -68,6 +78,34 @@ function decideMessage(sender, text1){
 function sendText(sender, text){
   let messageData = {text: text};
   sendRequest(sender, messageData);
+};
+
+function quickReplyMessageIntro(sender, text){
+  let messageData = {
+    "recipient":{
+      "id":"USER_ID"
+    },
+    "message":{
+      "text": text,
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"View Background",
+          "payload":"getBackground"
+        },
+        {
+          "content_type":"text",
+          "title":"Current Project",
+          "payload":"getCurrentProject"
+        },
+        {
+          "content_type":"text",
+          "title":"Get Links",
+          "payload":"getLinks"
+        }
+      ]
+    }
+  }
 };
 
 function sendButtonMessage(sender, text){
