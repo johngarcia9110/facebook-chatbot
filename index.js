@@ -52,12 +52,12 @@ app.post('/webhook/', function(req,res){
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   console.log('text1: '+text1);
-  console.log('text: '+ text);
+  console.log('text: '+ text[0]);
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
-  }else if(text1 === 'getstarted'){
+  }else if(text1 === '"getstarted"'){
     sendText(sender, "Postback recieved");
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
