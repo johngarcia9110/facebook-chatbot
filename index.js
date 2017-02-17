@@ -51,7 +51,7 @@ app.post('/webhook/', function(req,res){
 
 function decideMessage(sender, text1){
   let text = text1.toLowerCase();
-  console.log(text1['payload']);
+  console.log(text1[0]);
   if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
     //sendGenericMessage(sender);//testing
