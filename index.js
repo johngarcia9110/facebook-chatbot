@@ -64,11 +64,11 @@ function decideMessage(sender, text1){
   }else if(text1 === '"getstarted"'){
     console.log('getstarted acknowledged');
     quickReplyMessageIntro(sender, 'I can give you a ton of information about John. You can learn about his background, what project he is currently working on and links to his portfolio and resume.');
-  }else if(text1 === '"getBackground"'){
+  }else if(text1 === 'Get Background'){
     sendText(sender, "my background");
-  }else if(text1 === '"getCurrentProject"'){
+  }else if(text1 === 'Current Project'){
     sendText(sender,"current project");
-  }else if(text1 === '"getLinks"'){
+  }else if(text1 === 'Get Links'){
     sendButtonMessage(sender, 'Here are John\'s links:');
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
