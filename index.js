@@ -67,16 +67,16 @@ function decideMessage(sender, text1){
   }else if(text1 === 'View Background'){
     sendText(sender, "Here is John's background:");
     sendText(sender, "John started out his technical career as an Avionics Technician in the U.S. Air Force. After 3 years of active duty he transitioned to web development at a small technology company in Tucson Arizona.");
-    quickReplyMessageIntro(sender);
+    quickReplyMessageIntro(sender, 'Would you like to learn more?');
   }else if(text1 === 'Current Project'){
     sendText(sender,"Currently John is building out a custom WordPress Website using sage.io for a Spay and Neuter company that has locations across the country.");
   }else if(text1 === 'Get Links'){
     sendButtonMessage(sender, 'Here are John\'s links:');
-    quickReplyMessageIntro(sender);
+    quickReplyMessageIntro(sender, 'Would you like to learn more?');
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
     //sendButtonMessage(sender, 'Select One Of The Following Options:');
-    quickReplyMessageIntro(sender);
+    quickReplyMessageIntro(sender, 'Select from the following options:');
   }
 };
 
@@ -86,9 +86,6 @@ function sendText(sender, text){
 };
 
 function quickReplyMessageIntro(sender, text){
-  if(!text){
-    text = '';
-  }
   let messageData = {
       "text": text,
       "quick_replies":[
