@@ -83,10 +83,6 @@ function sendText(sender, text){
 
 function quickReplyMessageIntro(sender, text){
   let messageData = {
-    "recipient":{
-      "id":"USER_ID"
-    },
-    "message":{
       "text": text,
       "quick_replies":[
         {
@@ -105,8 +101,7 @@ function quickReplyMessageIntro(sender, text){
           "payload":"getLinks"
         }
       ]
-    }
-  }
+  };
   sendRequest(sender, messageData);
 };
 
@@ -131,7 +126,7 @@ function sendButtonMessage(sender, text){
           ]
         }
       }
-  }
+  };
   sendRequest(sender, messageData);
 };
 
