@@ -65,9 +65,10 @@ function decideMessage(sender, text1){
     console.log('getstarted acknowledged');
     quickReplyMessageIntro(sender, 'I can give you a ton of information about John. You can learn about his background, what project he is currently working on and links to his portfolio and resume.');
   }else if(text1 === 'Get Background'){
-    sendText(sender, "my background");
+    sendText(sender, "Here is John's background:");
+    sendText(sender, "John started out his technical career as an Avionics Technician in the U.S. Air Force. After 3 years of active duty he transitioned to web development at a small technology company in Tucson Arizona.");
   }else if(text1 === 'Current Project'){
-    sendText(sender,"current project");
+    sendText(sender,"Currently John is building out a custom WordPress Website using sage.io for a Spay and Neuter company that has locations across the country.");
   }else if(text1 === 'Get Links'){
     sendButtonMessage(sender, 'Here are John\'s links:');
   }else{
