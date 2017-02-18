@@ -62,6 +62,7 @@ function decideMessage(sender, text1){
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
   }else if(text1 === '"getstarted"'){
+    console.log('getstarted acknowledged');
     quickReplyMessageIntro(sender, 'I can give you a ton of information about John. You can learn about his background, what project he is currently working on and links to his portfolio and resume.');
   }else if(text1 === '"getBackground"'){
     sendText(sender, "my background");
@@ -106,6 +107,7 @@ function quickReplyMessageIntro(sender, text){
       ]
     }
   }
+  sendRequest(sender, messageData);
 };
 
 function sendButtonMessage(sender, text){
