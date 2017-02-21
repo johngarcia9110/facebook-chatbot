@@ -57,7 +57,7 @@ function decideMessage(sender, text1){
   let text = text1.toLowerCase();
   console.log('text1: '+text1);
   console.log('text: '+ text[0]);
-  if(text.includes('hi') || text.includes('hello') || text.includes('hey')){
+  if(text.includes(' hi ') || text.includes(' hello ') || text.includes(' hey ')){
     sendText(sender, 'Hi! I\'m John\'s chatbot, nice to meet you!');
     //sendGenericMessage(sender);//testing
     sendButtonMessage(sender, 'Select One Of The Following Options:');
@@ -66,13 +66,12 @@ function decideMessage(sender, text1){
     quickReplyMessageIntro(sender, 'I can give you a ton of information about John. You can learn about his background, what project he is currently working on and links to his portfolio and resume.');
   }else if(text1 === 'View Background'){
     sendText(sender, "Here is John's background:");
-    sendText(sender, "John started out his technical career as an Avionics Technician in the U.S. Air Force. After 3 years of active duty he transitioned to web development at a small technology company in Tucson Arizona.");
-    quickReplyMessageIntro(sender, 'Would you like to learn more?');
+    sendText(sender, "John is currently a Front End Developer who started out his technical career as an Avionics Technician in the U.S. Air Force. After 3 years of active duty he transitioned to web development at a small technology company in Tucson Arizona.");
+    sendText(sender, "For the past 2.5 years John has worked primarly as a custom WordPress developer using HTML, CSS, JavaScript and PHP in his everyday work.")
   }else if(text1 === 'Current Project'){
     sendText(sender,"Currently John is building out a custom WordPress Website using sage.io for a Spay and Neuter company that has locations across the country.");
   }else if(text1 === 'Get Links'){
     sendButtonMessage(sender, 'Here are John\'s links:');
-    quickReplyMessageIntro(sender, 'Would you like to learn more?');
   }else{
     sendText(sender, "John's Chatbot is in beta, pretty soon, there will be no difference between John and the this robot.. For now though, I can help you with the following:");
     //sendButtonMessage(sender, 'Select One Of The Following Options:');
